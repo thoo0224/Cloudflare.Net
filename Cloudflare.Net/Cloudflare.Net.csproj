@@ -15,7 +15,8 @@
     <Copyright>Thomas P.</Copyright>
     <Description>.NET Library to communicate with the CloudFlare API.</Description>
     <PackageId>Cloudflare.Net.Thoo</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
+    <Authors>Thoo</Authors>
   </PropertyGroup>
 
   <ItemGroup>
