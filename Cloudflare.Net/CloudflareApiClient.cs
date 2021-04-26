@@ -62,10 +62,7 @@ namespace Cloudflare.Net
             Checks.NotNull(options.ApiKey, nameof(options.ApiKey));
             Checks.NotNull(options.Email, nameof(options.ApiKey));
 
-            Client = new RestClient(options.BaseUrl ?? DefaultBaseUrl)
-            {
-                Proxy = new WebProxy("127.0.0.1", 8888)
-            };
+            Client = new RestClient(options.BaseUrl ?? DefaultBaseUrl);
             Client.UseSerializer<NewtonsoftSerializer>();
             Client.AddDefaultHeader("X-Auth-Email", options.Email);
             Client.AddDefaultHeader("X-Auth-Key", options.ApiKey);
