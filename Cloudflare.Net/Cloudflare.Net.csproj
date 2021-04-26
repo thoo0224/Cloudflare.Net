@@ -26,14 +26,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Options\ZoneOptions" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Options\ZoneOptions" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RestSharp" Version="106.11.7" />
