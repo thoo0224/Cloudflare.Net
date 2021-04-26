@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cloudflare.Net</name>
+    </assembly>
+    <members>
+        <member name="T:Cloudflare.Net.CloudflareApiClient">
+            <summary>
+            Api client
+            </summary>
+        </member>
+        <member name="P:Cloudflare.Net.CloudflareApiClient.CurrentUser">
+            <summary>
+            The current logged in user
+            </summary>
+        </member>
+        <member name="P:Cloudflare.Net.CloudflareApiClient.User">
+            <summary>
+            All the user endpoints
+            </summary>
+        </member>
+        <member name="P:Cloudflare.Net.CloudflareApiClient.Zone">
+            <summary>
+            All the zone endpoints
+            </summary>
+        </member>
+        <member name="P:Cloudflare.Net.CloudflareApiClient.Dns">
+            <summary>
+            All the dns endpoints
+            </summary>
+        </member>
+        <member name="M:Cloudflare.Net.CloudflareApiClient.#ctor(System.Action{Cloudflare.Net.CloudflareApiClientOptions})">
+            <summary>
+            Construct
+            </summary>
+            <param name="optionsAction">Options for the client; ApiKey, Email are required.</param>
+        </member>
+        <member name="M:Cloudflare.Net.CloudflareApiClient.LoginAsync">
+            <summary>
+            Logs in to set <see cref="P:Cloudflare.Net.CloudflareApiClient.CurrentUser"/> which is used for some endpoints.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.DnsEndpoints.GetDnsRecordsAsync(Cloudflare.Net.Objects.Zone.Zone)">
+            <summary>
+            Gets all the dns records of a zone
+            </summary>
+            <param name="zone">The zone</param>
+            <returns>The cloudflare response with all the dns records of the zone as result.</returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.DnsEndpoints.GetDnsRecordsAsync(System.String)">
+            <summary>
+            Gets all the dns records of a zone
+            </summary>
+            <param name="id">The id of the zone</param>
+            <returns>The cloudflare response with all the dns records of the zone as result.</returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.DnsEndpoints.CreateDnsRecordAsync(Cloudflare.Net.Objects.Zone.Zone,System.String,System.String,Cloudflare.Net.Objects.Dns.DnsRecordType,System.Action{Cloudflare.Net.Options.DnsRecordOptions})">
+            <summary>
+            Create a new dns record for the zone.
+            </summary>
+            <param name="zone">The zone</param>
+            <param name="name">The name for the dns record.</param>
+            <param name="content">The content of the dns record.</param>
+            <param name="type">The dns record type.</param>
+            <param name="bodyAction">Options for the dns record such as ttl, proxied, priority</param>
+            <returns>The dns record that has been created.</returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.DnsEndpoints.CreateDnsRecordAsync(System.String,System.String,System.String,Cloudflare.Net.Objects.Dns.DnsRecordType,System.Action{Cloudflare.Net.Options.DnsRecordOptions})">
+            <summary>
+            Create a new dns record for the zone.
+            </summary>
+            <param name="id">The id of the zone.</param>
+            <param name="name">The name for the dns record.</param>
+            <param name="content">The content of the dns record.</param>
+            <param name="type">The dns record type.</param>
+            <param name="bodyAction">Options for the dns record such as ttl, proxied, priority</param>
+            <returns>The dns record that has been created.</returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.DnsEndpoints.GetDnsRecordAsync(Cloudflare.Net.Objects.Zone.Zone,System.String)">
+            <summary>
+            Get the information about a dns record by id in a zone.
+            </summary>
+            <param name="zone">The zone</param>
+            <param name="dnsRecordId">The id of the dns record</param>
+            <returns>Cloudflare response with the dns record as result.</returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.DnsEndpoints.UpdateDnsRecordAsync(Cloudflare.Net.Objects.Zone.Zone,Cloudflare.Net.Objects.Dns.DnsRecord,System.Action{Cloudflare.Net.Options.DnsRecordOptions})">
+            <summary>
+            Updates the dns record
+            </summary>
+            <param name="zone">The zone</param>
+            <param name="record">The record</param>
+            <param name="optionsAction">Options for the dns record such as ttl, proxied, priority</param>
+            <returns>The dns record that has been modified.</returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.DnsEndpoints.UpdateDnsRecordAsync(System.String,Cloudflare.Net.Objects.Dns.DnsRecord,System.Action{Cloudflare.Net.Options.DnsRecordOptions})">
+            <summary>
+            Updates the dns record
+            </summary>
+            <param name="zoneId">The id of the zone</param>
+            <param name="record">The record</param>
+            <param name="optionsAction">Options for the dns record such as ttl, proxied, priority</param>
+            <returns>The dns record that has been modified.</returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.DnsEndpoints.DeleteDnsRecordAsync(System.String,Cloudflare.Net.Objects.Dns.DnsRecord)">
+            <summary>
+            Deletes the dns record
+            </summary>
+            <param name="zoneId">The id of the zone.</param>
+            <param name="record">The dns record.</param>
+            <returns>An object with the id of the dns record that has been deleted.</returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.DnsEndpoints.DeleteDnsRecordAsync(Cloudflare.Net.Objects.Zone.Zone,System.String)">
+            <summary>
+            Deletes the dns record
+            </summary>
+            <param name="zone">The zone.</param>
+            <param name="recordId">The id of the dns record.</param>
+            <returns>An object with the id of the dns record that has been deleted.</returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.DnsEndpoints.DeleteDnsRecordAsync(Cloudflare.Net.Objects.Zone.Zone,Cloudflare.Net.Objects.Dns.DnsRecord)">
+            <summary>
+            Deletes the dns record
+            </summary>
+            <param name="zone">The zone.</param>
+            <param name="record">The dns record.</param>
+            <returns>An object with the id of the dns record that has been deleted.</returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.DnsEndpoints.DeleteDnsRecordAsync(System.String,System.String)">
+            <summary>
+            Deletes the dns record
+            </summary>
+            <param name="zoneId">The id of the zone.</param>
+            <param name="recordId">The id of the dns record.</param>
+            <returns>An object with the id of the dns record that has been deleted.</returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.DnsEndpoints.ImportDnsRecordsAsync(System.String,Cloudflare.Net.Objects.Zone.Zone,System.Boolean)">
+            <summary>
+            Imports your bind config.
+            </summary>
+            <param name="file">The bind config.</param>
+            <param name="zone">The zone.</param>
+            <param name="proxied">Proxied.</param>
+            <returns>Returns the result of the import.</returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.DnsEndpoints.ImportDnsRecordsAsync(System.String,System.String,System.Boolean)">
+            <summary>
+            Imports your bind config.
+            </summary>
+            <param name="file">The bind config.</param>
+            <param name="zoneId">The zone id.</param>
+            <param name="proxied">Proxied.</param>
+            <returns>Returns the result of the import.</returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.UserEndpoints.GetCurrentUserAsync">
+            <summary>
+            Gets the current user of the api key provided.
+            </summary>
+            <returns>The cloudflare response with the current user as result.</returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.ZoneEndpoints.GetZonesAsync">
+            <summary>
+            Gets all the zones.
+            </summary>
+            <returns>The cloudflare response with all the zones as result.</returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.ZoneEndpoints.CreateZoneAsync(System.String,System.Action{Cloudflare.Net.Options.ZoneProperties})">
+            <summary>
+            Creates a new zone.
+            </summary>
+            <param name="name">Name of the zone.</param>
+            <param name="bodyAction">Options for the zone such as jump start and type.</param>
+            <returns>Returns the zone which has been created.</returns>
+        </member>
+    </members>
+</doc>

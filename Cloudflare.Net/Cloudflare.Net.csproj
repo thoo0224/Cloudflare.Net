@@ -20,7 +20,9 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.1|AnyCPU'">
-    <DocumentationFile>E:\Serious\Cloudflare.Net\Cloudflare.Net\Cloudflare.Net.xml</DocumentationFile>
+    <DocumentationFile>..\Cloudflare.Net\Cloudflare.Net.xml</DocumentationFile>
+    <WarningsAsErrors>;NU1605</WarningsAsErrors>
+    <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
