@@ -22,6 +22,11 @@ CloudflareResponse<List<DnsRecord>> dnsRecords = await client.Dns.GetDnsRecordsA
 await client.Dns.CreateDnsRecordAsync(firstZone, "test", "8.8.8.8", DnsRecordType.A);
 ```
 
+# NuGet
+```
+Install-Package Cloudflare.Net.Thoo
+```
+
 # Packages
 * [RestSharp] (https://github.com/restsharp/RestSharp)
 * [Newtonsoft.Json] (https://github.com/JamesNK/Newtonsoft.Json)
