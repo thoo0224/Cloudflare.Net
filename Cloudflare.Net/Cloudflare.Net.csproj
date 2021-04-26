@@ -14,6 +14,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Copyright>Thomas P.</Copyright>
     <Description>API Wrapper for Cloudflare.</Description>
+    <PackageId>Cloudflare.Net.Thoo</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
