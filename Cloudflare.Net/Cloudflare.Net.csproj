@@ -19,6 +19,18 @@
     <Authors>Thoo</Authors>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.1|AnyCPU'">
+    <DocumentationFile>E:\Serious\Cloudflare.Net\Cloudflare.Net\Cloudflare.Net.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Options\ZoneOptions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Options\ZoneOptions" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />

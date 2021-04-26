@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace Cloudflare.Net
 {
+    /// <summary>
+    /// Api client
+    /// </summary>
     public class CloudflareApiClient
     {
 
@@ -19,9 +22,15 @@ namespace Cloudflare.Net
 
         internal bool LoggingIn { get; set; } = true;
 
+        /// <summary>
+        /// The current logged in user
+        /// </summary>
         public CloudflareUser CurrentUser { get; set; }
 
         private UserEndpoints _user;
+        /// <summary>
+        /// All the user endpoints
+        /// </summary>
         public UserEndpoints User
         {
             get
@@ -33,6 +42,9 @@ namespace Cloudflare.Net
         }
 
         private ZoneEndpoints _zone;
+        /// <summary>
+        /// All the zone endpoints
+        /// </summary>
         public ZoneEndpoints Zone
         {
             get
@@ -44,6 +56,9 @@ namespace Cloudflare.Net
         }
 
         private DnsEndpoints _dns;
+        /// <summary>
+        /// All the dns endpoints
+        /// </summary>
         public DnsEndpoints Dns
         {
             get
@@ -53,7 +68,10 @@ namespace Cloudflare.Net
             }
             set => _dns = value;
         }
-
+        /// <summary>
+        /// Construct
+        /// </summary>
+        /// <param name="optionsAction">Options for the client; ApiKey, Email are required.</param>
         public CloudflareApiClient(Action<CloudflareApiClientOptions> optionsAction)
         {
             var options = new CloudflareApiClientOptions();
@@ -72,6 +90,10 @@ namespace Cloudflare.Net
             _dns = new DnsEndpoints(this);
         }
 
+        /// <summary>
+        /// Logs in to set <see cref="CurrentUser"/> which is used for some endpoints.
+        /// </summary>
+        /// <returns></returns>
         public async Task LoginAsync()
         {
             var response = await User.GetCurrentUserAsync().ConfigureAwait(false);

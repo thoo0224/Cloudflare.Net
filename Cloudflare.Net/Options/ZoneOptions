@@ -2,9 +2,9 @@
 
 using J = Newtonsoft.Json.JsonPropertyAttribute;
 
-namespace Cloudflare.Net.Bodies
+namespace Cloudflare.Net.Options
 {
-    public class CreateZoneBody
+    public class ZoneProperties
     {
 
         public string Name { get; set; }

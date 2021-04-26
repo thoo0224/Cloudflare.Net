@@ -1,5 +1,4 @@
-﻿using Cloudflare.Net.Bodies;
-using Cloudflare.Net.Objects;
+﻿using Cloudflare.Net.Objects;
 using Cloudflare.Net.Objects.Zone;
 using Cloudflare.Net.Utils;
 
@@ -10,6 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Cloudflare.Net.Options;
 
 namespace Cloudflare.Net.Endpoints
 {
@@ -45,13 +45,13 @@ namespace Cloudflare.Net.Endpoints
         /// <returns>Returns the zone which has been created.</returns>
         public async Task<CloudflareResponse<Zone>> CreateZoneAsync(
             [NotNull] string name, 
-            Action<CreateZoneBody> bodyAction = null)
+            Action<ZoneProperties> bodyAction = null)
         {
             Checks.NotNull(name, nameof(name));
             Checks.StringLength(name, nameof(name), 253);
             Checks.Regex(name, nameof(name), _zoneNameRegex, $"{name} is not a valid zone name!");
 
-            var body = new CreateZoneBody
+            var body = new ZoneProperties
             {
                 Name = name
             };
