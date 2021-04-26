@@ -44,6 +44,8 @@ namespace Cloudflare.Net.Endpoints
         /// <returns>The cloudflare response with all the dns records of the zone as result.</returns>
         public async Task<CloudflareResponse<List<DnsRecord>>> GetDnsRecordsAsync([NotNull] string id)
         {
+            Checks.NotNull(id, nameof(id));
+
             var request = new RestRequest($"/zones/{id}/dns_records");
             var response = await _client.Client.ExecuteAsync<CloudflareResponse<List<DnsRecord>>>(request).ConfigureAwait(false);
 
@@ -96,6 +98,8 @@ namespace Cloudflare.Net.Endpoints
             bodyAction?.Invoke(options);
 
             Checks.NotNull(options.Name, nameof(options.Name));
+            Checks.NotNull(id, nameof(id));
+            Checks.NotNull(content, nameof(content));
             Checks.StringLength(options.Content, nameof(options.Content), 255);
 
             var request = new RestRequest($"/zones/{id}/dns_records", Method.POST);
