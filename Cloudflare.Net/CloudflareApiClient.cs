@@ -4,7 +4,7 @@ using Cloudflare.Net.Objects.User;
 using Cloudflare.Net.Utils;
 
 using RestSharp;
-
+using GraphQL;
 using System;
 using System.Net;
 using System.Threading.Tasks;

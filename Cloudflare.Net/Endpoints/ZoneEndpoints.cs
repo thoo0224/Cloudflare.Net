@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Cloudflare.Net.Objects.Zone.Analytics;
 using Cloudflare.Net.Options;
 
 namespace Cloudflare.Net.Endpoints
@@ -62,6 +63,47 @@ namespace Cloudflare.Net.Endpoints
 
             return response.Data;
         }
+
+        /// <summary>
+        /// Gets details about the zone.
+        /// </summary>
+        /// <param name="id">The zoneId of the zone.</param>
+        /// <returns>The details about the zone</returns>
+        public async Task<CloudflareResponse<Zone>> GetZoneAsync([NotNull] string id)
+        {
+            Checks.NotNull(id, nameof(id));
+
+            var request = new RestRequest($"/zones/{id}");
+            var response = await _client.Client.ExecuteAsync<CloudflareResponse<Zone>>(request).ConfigureAwait(false);
+
+            return response.Data;
+        }
+
+        /// <summary>
+        /// Deleted the zone.
+        /// </summary>
+        /// <param name="zone">The zone that will get deleted.</param>
+        /// <returns>an object with the zoneId.</returns>
+        public async Task<CloudflareResponse<object>> DeleteZoneAsync([NotNull] Zone zone)
+        {
+            return await DeleteZoneAsync(zone.Id);
+        }
+
+        /// <summary>
+        /// Deleted the zone.
+        /// </summary>
+        /// <param name="zoneId">The zoneId of the zone that will get deleted.</param>
+        /// <returns>an object with the zoneId.</returns>
+        public async Task<CloudflareResponse<object>> DeleteZoneAsync([NotNull] string zoneId)
+        {
+            Checks.NotNull(zoneId, nameof(zoneId));
+
+            var request = new RestRequest($"/zones/{zoneId}", Method.DELETE);
+            var response = await _client.Client.ExecuteAsync<CloudflareResponse<object>>(request).ConfigureAwait(false);
+
+            return response.Data;
+        }
+
 
     }
 }

@@ -18,7 +18,7 @@ namespace Cloudflare.Net.Test
 
             var zones = await client.Zone.GetZonesAsync();//"2fcb2405648c7b3313c69f383173930e"
             var zone = zones.Result.FirstOrDefault(x => x.Name == "thoo.nl");
-            var dnsRecord = await client.Dns.GetDnsRecordAsync(zone, "2fcb2405648c7b3313c69f383173930e");
+            var dnsRecord = await client.Zone.GetZoneAnalyticsDashboard(zone?.Id);
             
             Debugger.Break();
         }

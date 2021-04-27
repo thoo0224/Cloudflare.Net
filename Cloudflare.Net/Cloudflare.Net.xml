@@ -173,5 +173,26 @@
             <param name="bodyAction">Options for the zone such as jump start and type.</param>
             <returns>Returns the zone which has been created.</returns>
         </member>
+        <member name="M:Cloudflare.Net.Endpoints.ZoneEndpoints.GetZoneAsync(System.String)">
+            <summary>
+            Gets details about the zone.
+            </summary>
+            <param name="id">The zoneId of the zone.</param>
+            <returns>The details about the zone</returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.ZoneEndpoints.DeleteZoneAsync(Cloudflare.Net.Objects.Zone.Zone)">
+            <summary>
+            Deleted the zone.
+            </summary>
+            <param name="zone">The zone that will get deleted.</param>
+            <returns>an object with the zoneId.</returns>
+        </member>
+        <member name="M:Cloudflare.Net.Endpoints.ZoneEndpoints.DeleteZoneAsync(System.String)">
+            <summary>
+            Deleted the zone.
+            </summary>
+            <param name="zoneId">The zoneId of the zone that will get deleted.</param>
+            <returns>an object with the zoneId.</returns>
+        </member>
     </members>
 </doc>
