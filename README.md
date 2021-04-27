@@ -27,6 +27,10 @@ await client.Dns.CreateDnsRecordAsync(firstZone, "test", "8.8.8.8", DnsRecordTyp
 Install-Package Cloudflare.Net.Thoo
 ```
 
+# To do
+* Adding more endpoints
+* gRPC
+
 # Packages
 * [RestSharp] (https://github.com/restsharp/RestSharp)
 * [Newtonsoft.Json] (https://github.com/JamesNK/Newtonsoft.Json)
