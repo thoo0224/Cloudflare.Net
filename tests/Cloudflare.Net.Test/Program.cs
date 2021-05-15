@@ -1,6 +1,7 @@
 ﻿using Cloudflare.Net.Enums;
 
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Cloudflare.Net.Test
@@ -21,19 +22,8 @@ namespace Cloudflare.Net.Test
                 .WithEmail(email)
                 .CreateAndLoginAsync();
 
-            var response = await client.User.GetPermissionsAsync();
-            if (!response.Success) {
-                foreach (var error in response.Errors)
-                {
-                    Console.WriteLine($"Error: {error.Message} (${error.Code})");
-                }
-                return;
-            }
-
-            foreach (var zone in response.Result)
-            {
-                Console.WriteLine(zone?.Name);
-            }
+            var response = await client.Zone.GetZonesAsync();
+            Debugger.Break();
         }
 
     }

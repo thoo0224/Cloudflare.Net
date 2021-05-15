@@ -47,7 +47,7 @@ Install-Package Cloudflare.Net.Thoo
 
 ### To do
 * Adding more endpoints
-* gRPC
+* GraphQL
 
 ### Packages
 * [RestSharp] (https://github.com/restsharp/RestSharp)
