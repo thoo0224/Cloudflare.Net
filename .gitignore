@@ -334,4 +334,5 @@ ASALocalRun/
 .localhistory/
 Cloudflare.Net.Test/Properties/launchSettings.json
 tests/Cloudflare.Net.Test/Properties/launchSettings.json
+tests/Cloudflare.Net.Test/Properties/launchSettings.json
 *.psd
