@@ -26,6 +26,13 @@ CloudflareApiClient client = await new CloudflareApiClientBuilder()
 	.WithEmail("your-email")
 	.CreateAndLoginAsync();
 
+// If you would like to modify the rest client that is used, that is possible using the ModifyRestClient method in the CloduflareApiClientBuilder!
+new CloudflareApiClientBuilder()
+	.ModifyRestClient(restClient => 
+	{
+		// Do whatever you would like to do.
+	})
+
 // It's pretty self explanatory but here are a few methods.
 CloudflareResponse<List<Zone>> zones = await client.Zone.GetZonesAsync();
 Zone firstZone = zones.FirstOrDefault();
@@ -48,7 +55,7 @@ Install-Package Cloudflare.Net.Thoo
 * [XUnit] (https://github.com/xunit/xunit)
 
 ### Contribution
-Feel free to contribute!
+Any type of contribution is appreciated!
 
 ### License
 Cloudflare.Net (Apache-2.0) [License](https://github.com/thoo0224/Clouflare.Net/blob/master/LICENSE)
