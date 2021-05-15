@@ -1,4 +1,4 @@
-﻿using Cloudflare.Net.Exceptions;
+﻿using System;
 
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -17,7 +17,7 @@ namespace Cloudflare.Net.Utils
             }
 
             var msg = message ?? "{0} cannot be null.";
-            throw new CloudflareException(string.Format(msg, name));
+            throw new ArgumentException(string.Format(msg, name), name);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -29,7 +29,7 @@ namespace Cloudflare.Net.Utils
             }
 
             var msg = message ?? "{0} cannot be longer than {1} characters.";
-            throw new CloudflareException(string.Format(msg, name, length));
+            throw new ArgumentException(string.Format(msg, name, length), name);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -41,8 +41,8 @@ namespace Cloudflare.Net.Utils
                 return;
             }
 
-            var msg = message ?? "{0} did not match the pattern.";
-            throw new CloudflareException(string.Format(msg, name));
+            var msg = message ?? "{0} did not match the pattern {1}.";
+            throw new ArgumentException(string.Format(msg, name, regex), name);
         }
 
     }
