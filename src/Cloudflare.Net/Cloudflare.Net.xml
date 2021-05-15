@@ -186,6 +186,12 @@
             </summary>
             <returns>The cloudflare response with the current user as result.</returns>
         </member>
+        <member name="M:Cloudflare.Net.Endpoints.UserEndpoints.GetPermissionsAsync">
+            <summary>
+            Gets the permission of the token that is used.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Cloudflare.Net.Endpoints.ZoneEndpoints.GetZonesAsync">
             <summary>
             Gets all the zones.
