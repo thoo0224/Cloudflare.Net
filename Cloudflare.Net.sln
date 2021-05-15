@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cloudflare.Net", "src\Cloud
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{636F66B4-E3FB-464D-B36D-6B69B33D4E5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cloudflare.Net.Tests.Unit", "tests\Cloudflare.Net.Tests.Unit\Cloudflare.Net.Tests.Unit.csproj", "{FC5629FA-0DFE-4C98-970A-4BA4FA56C1DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cloudflare.Net.Tests.Unit", "tests\Cloudflare.Net.Tests.Unit\Cloudflare.Net.Tests.Unit.csproj", "{FC5629FA-0DFE-4C98-970A-4BA4FA56C1DD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cloudflare.Net.Test", "tests\Cloudflare.Net.Test\Cloudflare.Net.Test.csproj", "{F81BDA48-6B0F-458E-BC4C-E50386000C30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,8 +25,12 @@ Global
 		{0518EE22-4BB3-4779-90F9-AB34BD0ADA5A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FC5629FA-0DFE-4C98-970A-4BA4FA56C1DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FC5629FA-0DFE-4C98-970A-4BA4FA56C1DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC5629FA-0DFE-4C98-970A-4BA4FA56C1DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC5629FA-0DFE-4C98-970A-4BA4FA56C1DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC5629FA-0DFE-4C98-970A-4BA4FA56C1DD}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC5629FA-0DFE-4C98-970A-4BA4FA56C1DD}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{F81BDA48-6B0F-458E-BC4C-E50386000C30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F81BDA48-6B0F-458E-BC4C-E50386000C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F81BDA48-6B0F-458E-BC4C-E50386000C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F81BDA48-6B0F-458E-BC4C-E50386000C30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0518EE22-4BB3-4779-90F9-AB34BD0ADA5A} = {05C93CAD-4D55-4100-A83D-F77D19792BF3}
 		{FC5629FA-0DFE-4C98-970A-4BA4FA56C1DD} = {636F66B4-E3FB-464D-B36D-6B69B33D4E5D}
+		{F81BDA48-6B0F-458E-BC4C-E50386000C30} = {636F66B4-E3FB-464D-B36D-6B69B33D4E5D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {265E4D20-AFB7-4CD2-8C99-8074AF9FF5D0}
