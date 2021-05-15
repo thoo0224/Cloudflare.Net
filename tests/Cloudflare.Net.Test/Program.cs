@@ -1,17 +1,27 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Cloudflare.Net.Test
 {
     internal class Program
     {
 
-        private static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
-            var key = Environment.GetEnvironmentVariable("cloudflare-api-key");
-            var email = Environment.GetEnvironmentVariable("cloudflare-api-email");
+            var apiKey = Environment.GetEnvironmentVariable("apiKey");
+            var email = Environment.GetEnvironmentVariable("email");
 
-            
+            var client = await new CloudflareApiClientBuilder()
+                .WithApiKey(apiKey)
+                .WithEmail(email)
+                .CreateAndLoginAsync();
+
+            var zones = await client.Zone.GetZonesAsync();
+            foreach (var zone in zones.Result)
+            {
+                Console.WriteLine(zone?.Name ?? "None");
+            }
         }
 
     }
