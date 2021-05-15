@@ -21,7 +21,7 @@ namespace Cloudflare.Net.Utils
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void StringLength(string str, string name, int length, string message = null)
+        public static void MaxStringLength(string str, string name, int length, string message = null)
         {
             if(str.Length <= length)
             {

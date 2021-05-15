@@ -100,7 +100,7 @@ namespace Cloudflare.Net.Endpoints
             Checks.NotNull(options.Name, nameof(options.Name));
             Checks.NotNull(id, nameof(id));
             Checks.NotNull(content, nameof(content));
-            Checks.StringLength(options.Content, nameof(options.Content), 255);
+            Checks.MaxStringLength(options.Content, nameof(options.Content), 255);
 
             var request = new RestRequest($"/zones/{id}/dns_records", Method.POST);
             request.AddJsonBody(options);

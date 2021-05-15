@@ -49,7 +49,7 @@ namespace Cloudflare.Net.Endpoints
             Action<ZoneProperties> bodyAction = null)
         {
             Checks.NotNull(name, nameof(name));
-            Checks.StringLength(name, nameof(name), 253);
+            Checks.MaxStringLength(name, nameof(name), 253);
             Checks.Regex(name, nameof(name), _zoneNameRegex, $"{name} is not a valid zone name!");
 
             var body = new ZoneProperties
