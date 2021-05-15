@@ -8,43 +8,35 @@ namespace Cloudflare.Net.Tests.Unit
     public class ChecksTests
     {
 
-        /*
-         *         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void NotNull(object obj, string name, string message = null)
+        [Theory]
+        [InlineData("Ball")]
+        [InlineData(3)]
+        public void NotNull_ShouldWork(object obj)
         {
-            if (obj != null)
-            {
-                return;
-            }
-
-            var msg = message ?? "{0} cannot be null.";
-            throw new CloudflareException(string.Format(msg, name));
+            Checks.NotNull(obj, nameof(obj));
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void StringLength(string str, string name, int length, string message = null)
+        [Fact]
+        public void NotNull_ShouldFail()
         {
-            if(str.Length <= length)
-            {
-                return;
-            }
-
-            var msg = message ?? "{0} cannot be longer than {1} characters.";
-            throw new CloudflareException(string.Format(msg, name, length));
+            Assert.Throws<CloudflareException>(() => Checks.NotNull(null, ""));
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Regex(string str, string name, Regex regex, string message = null)
+        [Theory]
+        [InlineData("Cloudflare", 10)]
+        [InlineData("Thoo", 4)]
+        public void MaxStringLength_ShouldWork(string str, int length)
         {
-            var match = regex.IsMatch(str);
-            if (match)
-            {
-                return;
-            }
+            Checks.MaxStringLength(str, nameof(str), length);
+        }
 
-            var msg = message ?? "{0} did not match the pattern.";
-            throw new CloudflareException(string.Format(msg, name));
-        }*/
+        [Theory]
+        [InlineData("Cloudflare", 9)]
+        [InlineData("Thoo", 3)]
+        public void MaxStringLength_ShouldFail(string str, int length)
+        {
+            Assert.Throws<CloudflareException>(() => Checks.MaxStringLength(str, nameof(str), length));
+        }
 
         [Theory]
         [InlineData("https", "http(s?)")]
