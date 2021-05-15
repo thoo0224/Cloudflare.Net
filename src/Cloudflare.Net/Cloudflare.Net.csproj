@@ -15,9 +15,10 @@
     <Copyright>Thomas P.</Copyright>
     <Description>.NET Library to communicate with the CloudFlare API.</Description>
     <PackageId>Cloudflare.Net.Thoo</PackageId>
-    <Version>1.0.2</Version>
-    <Authors>Thoo</Authors>
+    <Version>1.0.3</Version>
+    <Authors>Thomas P.</Authors>
     <UserSecretsId>e27b93c1-0da1-48a7-a790-5b50fe77f3af</UserSecretsId>
+    <Company />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.1|AnyCPU'">
