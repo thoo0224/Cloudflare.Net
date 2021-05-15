@@ -183,7 +183,7 @@ namespace Cloudflare.Net.Endpoints
         /// <param name="record">The dns record.</param>
         /// <returns>An object with the id of the dns record that has been deleted.</returns>
 
-        public async Task<CloudflareResponse<object>> DeleteDnsRecordAsync(
+        public async Task<CloudflareResponse> DeleteDnsRecordAsync(
             [NotNull] string zoneId,
             [NotNull] DnsRecord record)
         {
@@ -196,7 +196,7 @@ namespace Cloudflare.Net.Endpoints
         /// <param name="zone">The zone.</param>
         /// <param name="recordId">The id of the dns record.</param>
         /// <returns>An object with the id of the dns record that has been deleted.</returns>
-        public async Task<CloudflareResponse<object>> DeleteDnsRecordAsync(
+        public async Task<CloudflareResponse> DeleteDnsRecordAsync(
             [NotNull] Zone zone,
             [NotNull] string recordId)
         {
@@ -209,7 +209,7 @@ namespace Cloudflare.Net.Endpoints
         /// <param name="zone">The zone.</param>
         /// <param name="record">The dns record.</param>
         /// <returns>An object with the id of the dns record that has been deleted.</returns>
-        public async Task<CloudflareResponse<object>> DeleteDnsRecordAsync(
+        public async Task<CloudflareResponse> DeleteDnsRecordAsync(
             [NotNull] Zone zone,
             [NotNull] DnsRecord record)
         {
@@ -222,7 +222,7 @@ namespace Cloudflare.Net.Endpoints
         /// <param name="zoneId">The id of the zone.</param>
         /// <param name="recordId">The id of the dns record.</param>
         /// <returns>An object with the id of the dns record that has been deleted.</returns>
-        public async Task<CloudflareResponse<object>> DeleteDnsRecordAsync(
+        public async Task<CloudflareResponse> DeleteDnsRecordAsync(
             [NotNull] string zoneId,
             [NotNull] string recordId)
         {
@@ -230,7 +230,7 @@ namespace Cloudflare.Net.Endpoints
             Checks.NotNull(recordId, nameof(recordId));
 
             var request = new RestRequest($"/zones/{zoneId}/dns_records/{recordId}", Method.DELETE);
-            var response = await _client.Client.ExecuteAsync<CloudflareResponse<object>>(request).ConfigureAwait(false);
+            var response = await _client.Client.ExecuteAsync<CloudflareResponse>(request).ConfigureAwait(false);
 
             return response.Data;
         }
