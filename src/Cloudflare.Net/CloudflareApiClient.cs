@@ -5,7 +5,6 @@ using Cloudflare.Net.Objects.User;
 using RestSharp;
 
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Cloudflare.Net
@@ -73,17 +72,20 @@ namespace Cloudflare.Net
             var options = new CloudflareApiClientOptions();
             optionsAction.Invoke(options);
             
-            Initialize(options.ApiKey, options.Email);
+            Initialize(options.ApiKey, options.Email, null);
         }
 
-        internal CloudflareApiClient(string apiKey, string email, bool login = false)
+        internal CloudflareApiClient(string apiKey, string email, Action<RestClient> clientAction)
         {
-            Initialize(apiKey, email);
+            Initialize(apiKey, email, clientAction);
         }
 
-        internal void Initialize(string apiKey, string email)
+        internal void Initialize(string apiKey, string email, Action<RestClient> clientAction)
         {
-            Client = new RestClient(DefaultBaseUrl);
+            Client = new RestClient();
+            clientAction?.Invoke(Client);
+
+            Client.BaseUrl = new Uri(DefaultBaseUrl);
             Client.UseSerializer<NewtonsoftSerializer>();
             Client.AddDefaultHeader("X-Auth-Email", email);
             Client.AddDefaultHeader("X-Auth-Key", apiKey);
