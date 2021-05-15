@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace Cloudflare.Net.Utils
 {
-    internal class Checks
+    public class Checks
     {
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
