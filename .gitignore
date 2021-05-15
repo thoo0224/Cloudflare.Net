@@ -333,4 +333,5 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 Cloudflare.Net.Test/Properties/launchSettings.json
+tests/Cloudflare.Net.Test/Properties/launchSettings.json
 *.psd
