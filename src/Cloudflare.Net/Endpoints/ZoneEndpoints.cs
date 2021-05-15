@@ -84,7 +84,7 @@ namespace Cloudflare.Net.Endpoints
         /// </summary>
         /// <param name="zone">The zone that will get deleted.</param>
         /// <returns>an object with the zoneId.</returns>
-        public async Task<CloudflareResponse<object>> DeleteZoneAsync([NotNull] Zone zone)
+        public async Task<CloudflareResponse> DeleteZoneAsync([NotNull] Zone zone)
         {
             return await DeleteZoneAsync(zone.Id);
         }
@@ -94,7 +94,7 @@ namespace Cloudflare.Net.Endpoints
         /// </summary>
         /// <param name="zoneId">The zoneId of the zone that will get deleted.</param>
         /// <returns>an object with the zoneId.</returns>
-        public async Task<CloudflareResponse<object>> DeleteZoneAsync([NotNull] string zoneId)
+        public async Task<CloudflareResponse> DeleteZoneAsync([NotNull] string zoneId)
         {
             Checks.NotNull(zoneId, nameof(zoneId));
 
