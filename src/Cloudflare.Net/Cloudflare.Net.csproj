@@ -17,6 +17,7 @@
     <PackageId>Cloudflare.Net.Thoo</PackageId>
     <Version>1.0.2</Version>
     <Authors>Thoo</Authors>
+    <UserSecretsId>e27b93c1-0da1-48a7-a790-5b50fe77f3af</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.1|AnyCPU'">
@@ -32,11 +33,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\resources\icon.png">
+    <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="LICENSE">
+    <None Include="..\..\resources\icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
