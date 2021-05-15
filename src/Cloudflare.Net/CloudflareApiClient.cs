@@ -18,7 +18,7 @@ namespace Cloudflare.Net
     {
 
         internal const string DefaultBaseUrl = "https://api.cloudflare.com/client/v4/";
-        internal RestClient Client { get; set; }
+        internal RestClient RestClient { get; set; }
         internal bool LoggingIn { get; set; }
 
         /// <summary>
@@ -80,25 +80,25 @@ namespace Cloudflare.Net
             Action<RestClient> clientAction,
             AuthenticationType authType)
         {
-            Client = new RestClient();
-            clientAction?.Invoke(Client);
+            RestClient = new RestClient();
+            clientAction?.Invoke(RestClient);
 
-            Client.BaseUrl = new Uri(DefaultBaseUrl);
-            Client.UseSerializer<NewtonsoftSerializer>();
+            RestClient.BaseUrl = new Uri(DefaultBaseUrl);
+            RestClient.UseSerializer<NewtonsoftSerializer>();
 
             if (authType == AuthenticationType.ApiKey)
             {
                 Checks.NotNull(apiKey, nameof(apiKey));
                 Checks.NotNull(email, nameof(email));
 
-                Client.AddDefaultHeader("X-Auth-Email", email);
-                Client.AddDefaultHeader("X-Auth-Key", apiKey);
+                RestClient.AddDefaultHeader("X-Auth-Email", email);
+                RestClient.AddDefaultHeader("X-Auth-Key", apiKey);
             }
             else
             {
                 Checks.NotNull(apiToken, nameof(apiToken));
 
-                Client.AddDefaultHeader("Authorization", $"Bearer {apiToken}");
+                RestClient.AddDefaultHeader("Authorization", $"Bearer {apiToken}");
             }
 
             _user = new UserEndpoints(this);

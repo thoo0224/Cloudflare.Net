@@ -15,15 +15,11 @@ using System.Threading.Tasks;
 
 namespace Cloudflare.Net.Endpoints
 {
-    public class DnsEndpoints
+    public class DnsEndpoints : BaseEndpoints
     {
 
-        private readonly CloudflareApiClient _client;
-
-        public DnsEndpoints(CloudflareApiClient client)
-        {
-            _client = client;
-        }
+        internal DnsEndpoints(CloudflareApiClient client)
+            : base(client) { }
 
         /// <summary>
         /// Gets all the dns records of a zone
@@ -47,9 +43,9 @@ namespace Cloudflare.Net.Endpoints
             Checks.NotNull(id, nameof(id));
 
             var request = new RestRequest($"/zones/{id}/dns_records");
-            var response = await _client.Client.ExecuteAsync<CloudflareResponse<List<DnsRecord>>>(request).ConfigureAwait(false);
+            var response = await ExecuteRequestAsync<List<DnsRecord>>(request);
 
-            return response.Data;
+            return response;
         }
 
         /// <summary>
@@ -104,9 +100,9 @@ namespace Cloudflare.Net.Endpoints
 
             var request = new RestRequest($"/zones/{id}/dns_records", Method.POST);
             request.AddJsonBody(options);
-            var response = await _client.Client.ExecuteAsync<CloudflareResponse<DnsRecord>>(request).ConfigureAwait(false);
+            var response = await ExecuteRequestAsync<DnsRecord>(request);
 
-            return response.Data;
+            return response;
         }
 
         /// <summary>
@@ -123,9 +119,9 @@ namespace Cloudflare.Net.Endpoints
             Checks.NotNull(dnsRecordId, nameof(dnsRecordId));
 
             var request = new RestRequest($"/zones/{zone.Id}/dns_records/{dnsRecordId}");
-            var response = await _client.Client.ExecuteAsync<CloudflareResponse<DnsRecord>>(request).ConfigureAwait(false);
+            var response = await ExecuteRequestAsync<DnsRecord>(request);
 
-            return response.Data;
+            return response;
         }
 
         /// <summary>
@@ -171,9 +167,9 @@ namespace Cloudflare.Net.Endpoints
 
             var request = new RestRequest($"/zones/{zoneId}/dns_records/{record.Id}", Method.PATCH);
             request.AddJsonBody(options);
-            var response = await _client.Client.ExecuteAsync<CloudflareResponse<DnsRecord>>(request).ConfigureAwait(false);
+            var response = await ExecuteRequestAsync<DnsRecord>(request);
 
-            return response.Data;
+            return response;
         }
 
         /// <summary>
@@ -230,9 +226,9 @@ namespace Cloudflare.Net.Endpoints
             Checks.NotNull(recordId, nameof(recordId));
 
             var request = new RestRequest($"/zones/{zoneId}/dns_records/{recordId}", Method.DELETE);
-            var response = await _client.Client.ExecuteAsync<CloudflareResponse>(request).ConfigureAwait(false);
+            var response = await ExecuteRequestAsync(request);
 
-            return response.Data;
+            return response;
         }
 
         /// <summary>
@@ -269,10 +265,10 @@ namespace Cloudflare.Net.Endpoints
 
             var request = new RestRequest($"/zones/{zoneId}/dns_records/import", Method.POST);
             request.AddFile("file", file);
-            request.AddParameter("proxied", proxied, ParameterType.RequestBody); 
-            var response = await _client.Client.ExecuteAsync<CloudflareResponse<DnsRecordImport>>(request).ConfigureAwait(false);
+            request.AddParameter("proxied", proxied, ParameterType.RequestBody);
+            var response = await ExecuteRequestAsync<DnsRecordImport>(request);
 
-            return response.Data;
+            return response;
         }
 
     }

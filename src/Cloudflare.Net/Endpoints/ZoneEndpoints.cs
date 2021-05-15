@@ -1,5 +1,6 @@
 ﻿using Cloudflare.Net.Objects;
 using Cloudflare.Net.Objects.Zone;
+using Cloudflare.Net.Options;
 using Cloudflare.Net.Utils;
 
 using RestSharp;
@@ -9,20 +10,17 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Cloudflare.Net.Objects.Zone.Analytics;
-using Cloudflare.Net.Options;
 
 namespace Cloudflare.Net.Endpoints
 {
-    public class ZoneEndpoints
+    public class ZoneEndpoints : BaseEndpoints
     {
 
-        private readonly CloudflareApiClient _client;
         private readonly Regex _zoneNameRegex;
 
-        public ZoneEndpoints(CloudflareApiClient client)
+        internal ZoneEndpoints(CloudflareApiClient client)
+            : base(client)
         {
-            _client = client;
             _zoneNameRegex = new Regex(@"^([a-zA-Z0-9][\-a-zA-Z0-9]*\.)+[\-a-zA-Z0-9]{2,20}$");
         }
 
@@ -33,9 +31,9 @@ namespace Cloudflare.Net.Endpoints
         public async Task<CloudflareResponse<List<Zone>>> GetZonesAsync()
         {
             var request = new RestRequest("/zones", Method.GET);
-            var response = await _client.Client.ExecuteAsync<CloudflareResponse<List<Zone>>>(request).ConfigureAwait(false);
+            var response = await ExecuteRequestAsync<List<Zone>>(request);
 
-            return response.Data;
+            return response;
         }
 
         /// <summary>
@@ -59,9 +57,9 @@ namespace Cloudflare.Net.Endpoints
             bodyAction?.Invoke(body);
             var request = new RestRequest("/zones", Method.POST);
             request.AddJsonBody(body);
-            var response = await _client.Client.ExecuteAsync<CloudflareResponse<Zone>>(request).ConfigureAwait(false);
+            var response = await ExecuteRequestAsync<Zone>(request);
 
-            return response.Data;
+            return response;
         }
 
         /// <summary>
@@ -74,9 +72,9 @@ namespace Cloudflare.Net.Endpoints
             Checks.NotNull(id, nameof(id));
 
             var request = new RestRequest($"/zones/{id}");
-            var response = await _client.Client.ExecuteAsync<CloudflareResponse<Zone>>(request).ConfigureAwait(false);
+            var response = await ExecuteRequestAsync<Zone>(request);
 
-            return response.Data;
+            return response;
         }
 
         /// <summary>
@@ -99,11 +97,10 @@ namespace Cloudflare.Net.Endpoints
             Checks.NotNull(zoneId, nameof(zoneId));
 
             var request = new RestRequest($"/zones/{zoneId}", Method.DELETE);
-            var response = await _client.Client.ExecuteAsync<CloudflareResponse<object>>(request).ConfigureAwait(false);
+            var response = await ExecuteRequestAsync(request);
 
-            return response.Data;
+            return response;
         }
-
 
     }
 }

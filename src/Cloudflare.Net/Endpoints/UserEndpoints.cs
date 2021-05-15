@@ -7,15 +7,11 @@ using System.Threading.Tasks;
 
 namespace Cloudflare.Net.Endpoints
 {
-    public class UserEndpoints
+    public class UserEndpoints : BaseEndpoints
     {
 
-        private readonly CloudflareApiClient _client;
-
-        public UserEndpoints(CloudflareApiClient client)
-        {
-            _client = client;
-        }
+        internal UserEndpoints(CloudflareApiClient client)
+            : base(client) { }
 
         /// <summary>
         /// Gets the current user of the api key provided.
@@ -24,9 +20,9 @@ namespace Cloudflare.Net.Endpoints
         public async Task<CloudflareResponse<CloudflareUser>> GetCurrentUserAsync()
         {
             var request = new RestRequest("/user", Method.GET);
-            var response = await _client.Client.ExecuteAsync<CloudflareResponse<CloudflareUser>>(request).ConfigureAwait(false);
+            var response = await ExecuteRequestAsync<CloudflareUser>(request);
 
-            return response.Data;
+            return response;
         }
 
     }
