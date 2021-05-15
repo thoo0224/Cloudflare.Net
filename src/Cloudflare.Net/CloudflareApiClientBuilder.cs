@@ -1,4 +1,5 @@
-﻿using Cloudflare.Net.Utils;
+﻿using Cloudflare.Net.Enums;
+using Cloudflare.Net.Utils;
 
 using RestSharp;
 
@@ -11,8 +12,10 @@ namespace Cloudflare.Net
     public class CloudflareApiClientBuilder
     {
 
+        private AuthenticationType _authType = AuthenticationType.ApiKey;
         private Action<RestClient> _clientAction;
         private string _apiKey;
+        private string _apiToken;
         private string _email;
 
         /// <summary>
@@ -41,6 +44,20 @@ namespace Cloudflare.Net
             return this;
         }
 
+        public CloudflareApiClientBuilder WithApiToken([NotNull] string apiToken)
+        {
+            Checks.NotNull(apiToken, nameof(apiToken));
+
+            _apiToken = apiToken;
+            return this;
+        }
+
+        public CloudflareApiClientBuilder WithAuthenticationType(AuthenticationType authType)
+        {
+            _authType = authType;
+            return this;
+        }
+
         /// <summary>
         /// Modifies the rest client used to send all the requests.
         /// </summary>
@@ -58,7 +75,7 @@ namespace Cloudflare.Net
         /// <returns></returns>
         public CloudflareApiClient Create()
         {
-            return new CloudflareApiClient(_apiKey, _email, _clientAction);
+            return new CloudflareApiClient(_apiToken, _apiKey, _email, _clientAction, _authType);
         }
 
         /// <summary>

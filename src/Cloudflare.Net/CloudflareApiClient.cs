@@ -1,6 +1,8 @@
 ﻿using Cloudflare.Net.Endpoints;
+using Cloudflare.Net.Enums;
 using Cloudflare.Net.Exceptions;
 using Cloudflare.Net.Objects.User;
+using Cloudflare.Net.Utils;
 
 using RestSharp;
 
@@ -69,27 +71,35 @@ namespace Cloudflare.Net
 
         [Obsolete("Please use CloudflareApiClientBuilder#create to create an api client. (This constructor will be removed within the next few updates.)")]
         public CloudflareApiClient(Action<CloudflareApiClientOptions> optionsAction)
-        {
-            var options = new CloudflareApiClientOptions();
-            optionsAction.Invoke(options);
-            
-            Initialize(options.ApiKey, options.Email, null);
-        }
+        { }
 
-        internal CloudflareApiClient(string apiKey, string email, Action<RestClient> clientAction)
-        {
-            Initialize(apiKey, email, clientAction);
-        }
-
-        internal void Initialize(string apiKey, string email, Action<RestClient> clientAction)
+        internal CloudflareApiClient(
+            string apiToken,
+            string apiKey, 
+            string email, 
+            Action<RestClient> clientAction,
+            AuthenticationType authType)
         {
             Client = new RestClient();
             clientAction?.Invoke(Client);
 
             Client.BaseUrl = new Uri(DefaultBaseUrl);
             Client.UseSerializer<NewtonsoftSerializer>();
-            Client.AddDefaultHeader("X-Auth-Email", email);
-            Client.AddDefaultHeader("X-Auth-Key", apiKey);
+
+            if (authType == AuthenticationType.ApiKey)
+            {
+                Checks.NotNull(apiKey, nameof(apiKey));
+                Checks.NotNull(email, nameof(email));
+
+                Client.AddDefaultHeader("X-Auth-Email", email);
+                Client.AddDefaultHeader("X-Auth-Key", apiKey);
+            }
+            else
+            {
+                Checks.NotNull(apiToken, nameof(apiToken));
+
+                Client.AddDefaultHeader("Authorization", $"Bearer {apiToken}");
+            }
 
             _user = new UserEndpoints(this);
             _zone = new ZoneEndpoints(this);
