@@ -12,12 +12,19 @@
 
 ### How to start
 ```cs
-CloudflareApiClient client = new CloudflareApiClient(options => 
-{
-  options.ApiKey = "your-api-key";
-  options.Email = "your-email";
-});
+// You can create the api client in 2 ways.
+// With this way you need to login manually.
+CloudflareApiClient client = new CloudflareApiClientBuilder()
+	.WithApiKey("your-api-key")
+	.WithEmail("your-email")
+	.Create();
 await client.LoginAsync();
+
+// And with this way you can create the api client and login automatically.
+CloudflareApiClient client = await new CloudflareApiClientBuilder()
+	.WithApiKey("your-api-key")
+	.WithEmail("your-email")
+	.CreateAndLoginAsync();
 
 // It's pretty self explanatory but here are a few methods.
 CloudflareResponse<List<Zone>> zones = await client.Zone.GetZonesAsync();
