@@ -10,7 +10,7 @@
 
 </div>
 
-# How to start
+### How to start
 ```cs
 CloudflareApiClient client = new CloudflareApiClient(options => 
 {
@@ -26,22 +26,22 @@ CloudflareResponse<List<DnsRecord>> dnsRecords = await client.Dns.GetDnsRecordsA
 await client.Dns.CreateDnsRecordAsync(firstZone, "test", "8.8.8.8", DnsRecordType.A);
 ```
 
-# NuGet
+### NuGet
 ```
 Install-Package Cloudflare.Net.Thoo
 ```
 
-# To do
+### To do
 * Adding more endpoints
 * gRPC
 
-# Packages
+### Packages
 * [RestSharp] (https://github.com/restsharp/RestSharp)
 * [Newtonsoft.Json] (https://github.com/JamesNK/Newtonsoft.Json)
 * [XUnit] (https://github.com/xunit/xunit)
 
-# Contribution
+### Contribution
 Feel free to contribute!
 
-# License
-Cloudflare.Net (Apache) [License](https://github.com/thoo0224/Clouflare.Net/blob/master/LICENSE)
+### License
+Cloudflare.Net (Apache-2.0) [License](https://github.com/thoo0224/Clouflare.Net/blob/master/LICENSE)
