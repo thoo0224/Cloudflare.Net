@@ -23,6 +23,7 @@ namespace Cloudflare.Net
         /// The current logged in user
         /// </summary>
         public CloudflareUser CurrentUser { get; set; }
+        public bool IsLoggedIn => CurrentUser != null;
 
         private UserEndpoints _user;
         /// <summary>
@@ -101,6 +102,11 @@ namespace Cloudflare.Net
         /// <returns></returns>
         public async Task LoginAsync()
         {
+            if(IsLoggedIn)
+            {
+                throw new CloudflareException("Already logged in.");
+            }
+
             LoggingIn = true;
             var response = await User.GetCurrentUserAsync();
             if (!response.Success)
