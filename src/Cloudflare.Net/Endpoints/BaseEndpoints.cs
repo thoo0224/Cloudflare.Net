@@ -20,6 +20,8 @@ namespace Cloudflare.Net.Endpoints
                 .ConfigureAwait(false);
 
             var cloudflareResponse = response.Data;
+            cloudflareResponse.HttpStatusCode = response.StatusCode;
+
             return cloudflareResponse;
         }
 

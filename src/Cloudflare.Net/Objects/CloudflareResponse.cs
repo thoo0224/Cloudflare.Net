@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 
 namespace Cloudflare.Net.Objects
 {
@@ -8,6 +9,7 @@ namespace Cloudflare.Net.Objects
     public class CloudflareResponse
     {
 
+        public HttpStatusCode HttpStatusCode { get; set; }
         public bool Success { get; set; }
         public List<CloudflareError> Errors { get; set; }
         public List<string> Messages { get; set; }
