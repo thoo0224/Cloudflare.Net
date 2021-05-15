@@ -1,4 +1,5 @@
-﻿using Cloudflare.Net.Exceptions;
+﻿using System;
+using Cloudflare.Net.Exceptions;
 using Cloudflare.Net.Utils;
 
 using Xunit;
@@ -19,7 +20,7 @@ namespace Cloudflare.Net.Tests.Unit
         [Fact]
         public void NotNull_ShouldFail()
         {
-            Assert.Throws<CloudflareException>(() => Checks.NotNull(null, ""));
+            Assert.Throws<ArgumentException>(() => Checks.NotNull(null, ""));
         }
 
         [Theory]
@@ -35,7 +36,7 @@ namespace Cloudflare.Net.Tests.Unit
         [InlineData("Thoo", 3)]
         public void MaxStringLength_ShouldFail(string str, int length)
         {
-            Assert.Throws<CloudflareException>(() => Checks.MaxStringLength(str, nameof(str), length));
+            Assert.Throws<ArgumentException>(() => Checks.MaxStringLength(str, nameof(str), length));
         }
 
         [Theory]
@@ -51,7 +52,7 @@ namespace Cloudflare.Net.Tests.Unit
         [InlineData("https://thoo.com", "http(s?)://thoo.nl")]
         public void Regex_ShouldFail(string str, string pattern)
         {
-            Assert.Throws<CloudflareException>(() => Checks.Regex(str, nameof(str), new System.Text.RegularExpressions.Regex(pattern)));
+            Assert.Throws<ArgumentException>(() => Checks.Regex(str, nameof(str), new System.Text.RegularExpressions.Regex(pattern)));
         }
 
     }
